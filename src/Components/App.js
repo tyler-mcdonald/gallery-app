@@ -6,10 +6,10 @@ import SearchForm from "./SearchForm";
 import Nav from "./Nav";
 import Gallery from "./Gallery";
 
-import apiKey from "../config.js";
+// import apiKey from "../config.js";
 
 const App = () => {
-  const navButtons = ["cats", "dogs", "computers"];
+  // const navButtons = ["cats", "dogs", "computers"];
 
   //   const navButtonRoutes = () => {
   //     const routes = navButtons.map((btn) => (
@@ -23,15 +23,16 @@ const App = () => {
       <div className="container">
         <SearchForm />
         <Nav />
+
         <Switch>
           {/* Home */}
           <Route exact path="/" component={Gallery} />
           {/* Search params */}
-          <Route exact path="/:search" component={Gallery} />
+          <Route path="/:search" component={Gallery} />
           {/* Nav buttons */}
-          <Route exact path={`/${navButtons[0]}`} component={Gallery} />
-          <Route exact path={`/${navButtons[1]}`} component={Gallery} />
-          <Route exact path={`/${navButtons[2]}`} component={Gallery} />
+          {/* <Route path="/cats" component={Gallery} />
+          <Route path="/dogs" component={Gallery} />
+          <Route path="/computers" component={Gallery} /> */}
         </Switch>
       </div>
     </BrowserRouter>
