@@ -1,17 +1,17 @@
-import { Link } from "react-router-dom";
-
-const Nav = (props) => {
-  const navButtons = props.topics.map((topic, index) => {
-    return (
-      <li key={index} onClick={() => props.performSearch(topic)}>
-        <Link to={`/search/${topic}`}>{topic}</Link>
-      </li>
-    );
-  });
-
+const Nav = () => {
   return (
     <nav className="main-nav">
-      <ul>{navButtons}</ul>
+      <ul>
+        <li>
+          <a href="#">Cats</a>
+        </li>
+        <li>
+          <a href="#">Dogs</a>
+        </li>
+        <li>
+          <a href="#">Computers</a>
+        </li>
+      </ul>
     </nav>
   );
 };
