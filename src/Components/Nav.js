@@ -1,19 +1,26 @@
-const Nav = () => {
-  return (
-    <nav className="main-nav">
-      <ul>
-        <li>
-          <a href="#">Cats</a>
-        </li>
-        <li>
-          <a href="#">Dogs</a>
-        </li>
-        <li>
-          <a href="#">Computers</a>
-        </li>
-      </ul>
-    </nav>
-  );
-};
+import { Component } from "react";
+import { NavLink, withRouter } from "react-router-dom";
 
-export default Nav;
+class Nav extends Component {
+  render() {
+    return (
+      <nav className="main-nav">
+        <ul>
+          <li>
+            <NavLink to="/cats">Cats</NavLink>
+          </li>
+          <li>
+            <NavLink to="/dogs">Dogs</NavLink>
+          </li>
+          <li>
+            <NavLink to="/computers">Computers</NavLink>
+          </li>
+        </ul>
+      </nav>
+    );
+  }
+}
+
+const NavWithRouter = withRouter(Nav);
+
+export default NavWithRouter;

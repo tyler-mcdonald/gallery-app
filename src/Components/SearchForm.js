@@ -1,7 +1,13 @@
+// import { Link } from 'react-router-dom'
 const SearchForm = () => {
+  const handleSubmit = (input) => {
+    console.log(input);
+  };
+
   return (
     <form className="search-form">
       <input type="search" name="search" placeholder="Search" required />
+
       <button type="submit" className="search-button">
         <svg
           fill="#fff"

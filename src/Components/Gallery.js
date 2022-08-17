@@ -1,6 +1,10 @@
 import NotFound from "./NotFound";
 
-const Gallery = () => {
+const Gallery = (props) => {
+  const query = props.match.params.search;
+
+  console.log(query);
+
   return (
     <div className="photo-container">
       <h2>Results</h2>
