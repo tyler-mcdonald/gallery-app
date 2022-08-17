@@ -1,15 +1,15 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 
 export default class SearchForm extends Component {
   state = { searchText: "" };
 
-  // update text in search form while typing
+  // Changes input text while typing
   onSearchChange = (e) => {
     this.setState({ searchText: e.target.value });
   };
 
-  // call performSearch and clear form field
+  // Call search function;
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.performSearch(this.state.searchText);

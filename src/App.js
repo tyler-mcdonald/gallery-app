@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Switch, Route, BrowserRouter, Redirect } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
 // api key
 import apiKey from "./config.js";
 // components
@@ -11,55 +11,33 @@ import Gallery from "./Components/Gallery";
 class App extends Component {
   state = { photos: [], defaultSearch: ["cats", "dogs", "birds"] };
 
-  // // change this to also accept url params "/search/:param"
+  // fetches data and updates this.state.photos
   performSearch = (query) => {
-    console.log(query);
-    this.setState({ search: query });
-
-    // const perPage = "24";
-    // const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=${perPage}&format=json&nojsoncallback=1`;
-    // this.setState({ search: query });
-    // axios.get(url).then((response) => {
-    //   const data = response.data.photos.photo;
-    //   this.setState({ photos: data });
-    // });
+    const perPage = "3";
+    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=${perPage}&format=json&nojsoncallback=1`;
+    axios.get(url).then((response) => {
+      const data = response.data.photos.photo;
+      this.setState({ photos: data });
+    });
   };
 
-  render() {
-    const randomDefaultSeach = () => {
-      const defaults = this.state.defaultSearch;
-      const random = Math.floor(Math.random() * defaults.length);
-      return defaults[random];
-    };
+  // creates a random search parameter from this.state.defaultSearch
+  randomDefaultSeach = () => {
+    const defaults = this.state.defaultSearch;
+    const random = Math.floor(Math.random() * defaults.length);
+    return defaults[random];
+  };
 
+  // generates random search
+  // componentDidMount() {
+  //   // this.performSearch(this.randomDefaultSeach());
+  // }
+
+  render() {
     return (
       <BrowserRouter>
         <div className="container">
-          {/* <SearchForm performSearch={this.performSearch} />
-          <Nav
-            topics={this.state.defaultSearch}
-            performSearch={this.performSearch}
-          /> */}
-
           <Switch>
-            <Route
-              exact
-              path={`/search/${this.state.search}`}
-              render={(matchProps) => (
-                <>
-                  <SearchForm
-                    {...matchProps}
-                    performSearch={this.performSearch}
-                  />
-                  <Nav
-                    topics={this.state.defaultSearch}
-                    performSearch={this.performSearch}
-                  />
-                  <Gallery {...matchProps} performSearch={this.performSearch} />
-                </>
-              )}
-            />
-
             {/* Home */}
             <Route
               exact
@@ -74,7 +52,11 @@ class App extends Component {
                     topics={this.state.defaultSearch}
                     performSearch={this.performSearch}
                   />
-                  <Gallery {...matchProps} performSearch={this.performSearch} />
+                  <Gallery
+                    {...matchProps}
+                    performSearch={this.performSearch}
+                    photos={this.state.photos}
+                  />
                 </>
               )}
             />
@@ -92,7 +74,11 @@ class App extends Component {
                     topics={this.state.defaultSearch}
                     performSearch={this.performSearch}
                   />
-                  <Gallery {...matchProps} performSearch={this.performSearch} />
+                  <Gallery
+                    {...matchProps}
+                    performSearch={this.performSearch}
+                    photos={this.state.photos}
+                  />
                 </>
               )}
             />
