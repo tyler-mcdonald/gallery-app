@@ -2,29 +2,34 @@ import NotFound from "./NotFound";
 import Photo from "./Photo";
 import { Component } from "react";
 import axios from "axios";
+// API key
 import apiKey from "../config.js";
 
 class Gallery extends Component {
-  state = { photos: [], loaded: false };
+  state = { photos: [], loaded: false, search: this.props.match.params.search };
 
   fetchPhotos = () => {
     const search = this.props.match.params.search;
     const perPage = "24";
-    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${search}&per_page=${perPage}&format=json&nojsoncallback=1`;
+    const safeSearch = "1";
+    const url = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${search}&safe_search=${safeSearch}&per_page=${perPage}&format=json&nojsoncallback=1`;
+    this.setState({ search, loaded: false });
     axios
       .get(url)
       .then((response) => response.data.photos.photo)
       .then((photos) => this.setState({ photos, loaded: true }));
-    // return photos;
   };
 
   componentDidMount() {
     this.fetchPhotos();
   }
 
-  // componentDidUpdate() {
-  //   this.fetchPhotos();
-  // }
+  componentDidUpdate() {
+    const search = this.props.match.params.search;
+    if (search !== this.state.search) {
+      this.fetchPhotos();
+    }
+  }
 
   render() {
     const renderPhotos = () => {
@@ -41,16 +46,22 @@ class Gallery extends Component {
       return photos;
     };
 
-    this.state.loaded
-      ? console.log(this.state.photos)
-      : console.log("loading...");
+    const handleLoading = () => {
+      if (this.state.loaded) {
+        return !this.props.match.params.search
+          ? "Search for Photos"
+          : `Results for ${this.props.match.params.search}`;
+      } else {
+        return "Loading...";
+      }
+    };
+
     return (
       <div className="photo-container">
-        <h2>Results</h2>
+        <h2>{handleLoading()}</h2>
         <ul>
-          {this.state.loaded ? renderPhotos() : <li>Loading...</li>}
-
-          <NotFound />
+          {renderPhotos()}
+          {this.state.photos.length === 0 ? <NotFound /> : null}
         </ul>
       </div>
     );
