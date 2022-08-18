@@ -1,7 +1,11 @@
 import { Component } from "react";
+// import { useHistory } from "react-router-dom";
 class SearchForm extends Component {
   handleSubmit = (e) => {
-    console.log(e);
+    e.preventDefault();
+    const path = `/${this.search.value}`;
+    this.props.history.push(path);
+    this.search.value = "";
   };
 
   render() {
@@ -11,9 +15,7 @@ class SearchForm extends Component {
           type="search"
           name="search"
           placeholder="Search"
-          ref={(input) => {
-            this.search = input;
-          }}
+          ref={(input) => (this.search = input)}
           required
         />
 
