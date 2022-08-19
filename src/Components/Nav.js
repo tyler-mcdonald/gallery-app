@@ -6,7 +6,7 @@ const Nav = () => {
     <nav className="main-nav">
       <ul>
         <li>
-          <NavLink to="/forest">forest</NavLink>
+          <NavLink to="/wildlife">wildlife</NavLink>
         </li>
         <li>
           <NavLink to="/castles">castles</NavLink>

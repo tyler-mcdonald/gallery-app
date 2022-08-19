@@ -1,11 +1,12 @@
 body {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
-  color: #3f4850;
+  color: #ffffff;
+  background: black;
 }
 
 h2 {
-  font-size: 2em;
+  font-size: 1.5em;
   margin: 52px 0 40px;
   text-transform: capitalize;
 }
@@ -14,35 +15,49 @@ ul {
   list-style-type: none;
   padding-left: 0;
 }
-
+ 
 a {
   text-decoration: none;
 }
 
+.title {
+  font-size: 4em;
+  color: #ffffff;
+  margin-top: 20px;
+}
+
 .search-form {
-  max-width: 460px;
+  max-width: 300px;
   display: flex;
   margin: 0 auto 32px;
 }
 
 .search-form button {
   outline: none;
-  background-color: #438bbd;
-  border: none;
+  background-color: #000000;
+  border: solid;
+  border-left: none;
+  border-color: white;
+  border-width: thin;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
   padding: 0px 15px;
-  border-radius: 0 0.35em 0.35em 0;
+  /* border-radius: 0 0.35em 0.35em 0; */
   cursor: pointer;
 }
 
 
 input {
   font-size: 1em;
+  color: white;
   width: 100%;
-  background-color: #edeff0;
-  padding: 10px 15px;
+  background-color: #000000;
+  padding: 5px 10px;
   border: 3px solid #d7dbdf;
-  border-right: none;
-  border-radius: 0.35em 0 0 0.35em;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-width: 1px;
+  /* border-radius: 0.35em 0 0 0.35em; */
   outline: none;
 }
 
@@ -53,16 +68,18 @@ input {
 
 .main-nav a {
   display: block;
-  background: #438bbd;
+  background: #00000069;
   border-radius: 3px;
   padding: 5px;
   color: #fff;
+  border-style: solid;
+  border-width: thin;
 }
 
 .main-nav .active,
 .main-nav a:hover,
 .search-form button:hover {
-  background-color: #275270;
+  background-color: #eaeaea5e;
 }
 
 .photo-container ul {
@@ -106,7 +123,7 @@ input {
 
 @media only screen and (min-width: 768px)  {
   body {
-    padding-top: 4em;
+    padding-top: 1em;
   }
 
   .container {

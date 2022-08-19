@@ -11,6 +11,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="container">
+        <h1 className="title">React Gallery</h1>
         <Route path="/" component={SearchForm} />
         <Nav />
         <Switch>
