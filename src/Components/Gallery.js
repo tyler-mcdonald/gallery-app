@@ -1,9 +1,8 @@
-import NotFound from "./NotFound";
-import Photo from "./Photo";
 import { Component } from "react";
 import axios from "axios";
-// API key
 import apiKey from "../config.js";
+import NotFound from "./NotFound";
+import Photo from "./Photo";
 
 class Gallery extends Component {
   state = { photos: [], loaded: false, search: this.props.match.params.search };
@@ -24,6 +23,7 @@ class Gallery extends Component {
     this.fetchPhotos();
   }
 
+  // Fetch new photos if search params change
   componentDidUpdate() {
     const search = this.props.match.params.search;
     if (search !== this.state.search) {
@@ -36,7 +36,6 @@ class Gallery extends Component {
       const photos = this.state.photos.map((photo) => {
         const size = "z";
         const url = `https://live.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_${size}.jpg`;
-
         return (
           <li key={photo.id}>
             <Photo url={url} title={photo.title} />
@@ -46,6 +45,7 @@ class Gallery extends Component {
       return photos;
     };
 
+    // Loading indicator
     const handleLoading = () => {
       if (this.state.loaded) {
         return !this.props.match.params.search

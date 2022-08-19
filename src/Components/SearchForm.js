@@ -1,6 +1,7 @@
 import { Component } from "react";
-// import { useHistory } from "react-router-dom";
+
 class SearchForm extends Component {
+  // Form submission
   handleSubmit = (e) => {
     e.preventDefault();
     const path = `/${this.search.value}`;
@@ -19,6 +20,7 @@ class SearchForm extends Component {
           required
         />
 
+        {/* Form search button */}
         <button type="submit" className="search-button">
           <svg
             fill="#fff"
