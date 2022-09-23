@@ -1,6 +1,7 @@
 import { Component } from "react";
 import axios from "axios";
-import apiKey from "../config.js";
+// import apiKey from "../config.js";
+const apiKey = process.env.API_KEY;
 import NotFound from "./NotFound";
 import Photo from "./Photo";
 
