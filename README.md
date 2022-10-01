@@ -1,7 +1,8 @@
 # react-gallery-app
 
-## A photo gallery using flickr API
+A photo searching app using the flickr API.
 
+### Features
 Users can search photos hosted on flickr using the search bar, navigation buttons as default searches, or the URL to return photos. 
 
 ### Setup
